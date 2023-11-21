@@ -2,7 +2,7 @@
 name = "kepler"
 version = "0.1.0"
 description = ""
-authors = ["Gabriele Orlandi <gabriele.orlandi@xtreamers.io>"]
+authors = ["Gabriele Orlandi <gabriele.orlandi@xtreamers.io>", "Fabio Lipreri <fabio.lipreri@xtreamers.io>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

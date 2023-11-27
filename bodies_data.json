@@ -1,0 +1,17 @@
+{
+  "body1": {
+    "mass": 1e26,
+    "initial_position": [2E4, 0, 0],
+    "initial_velocity": [0, -10, 0]
+  },
+  "body2": {
+    "mass": 1e26,
+    "initial_position": [-2E4, 0, 0],
+    "initial_velocity": [0, 10, 0]
+  },
+  "body3": {
+    "mass": 1e31,
+    "initial_position": [0, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  }
+}

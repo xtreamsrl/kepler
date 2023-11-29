@@ -2,6 +2,8 @@ import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
+from matplotlib.artist import Artist
+from mpl_toolkits.mplot3d.art3d import Line3D, Path3DCollection
 
 from src.body import Body
 from src.utils import compute_relative_marker_size
@@ -13,9 +15,9 @@ plt.style.use('dark_background')
 def create_frame(
         frame_num: int,
         trajectories: np.ndarray,
-        trajectory_traces: list[plt.Artist],
-        position_traces: list[plt.Artist],
-) -> list[plt.Artist]:
+        trajectory_traces: list[Line3D],
+        position_traces: list[Path3DCollection],
+) -> list[Artist]:
 
     for i in range(trajectories.shape[0]):
         trajectory_traces[i].set_data(
@@ -68,7 +70,6 @@ def plot_animation(bodies: list[Body]):
             marker='o',
             s=marker_sizes[i]
         ))
-
     fig = plt.figure()
     anim = FuncAnimation(
         fig=fig,

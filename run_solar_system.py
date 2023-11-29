@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import matplotlib
 from matplotlib import pyplot as plt
 
 from src.strategies import RungeKutta4Strategy
@@ -20,8 +21,9 @@ if __name__ == "__main__":
         y = solar_system.current_state
         increment = RungeKutta4Strategy().compute_increment(y, tn, dt, solar_system.eqm_derivatives)
         solar_system.update_state(y + increment * dt)
+    matplotlib.use("TkAgg")
 
     anim = plot_animation(solar_system.planets)
-    anim.save('animation.gif', fps=10)
+    anim.save('animation.gif', fps=100)
 
     plt.show()

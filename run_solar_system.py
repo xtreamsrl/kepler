@@ -1,36 +1,27 @@
-import numpy as np
+from pathlib import Path
 
-from src.Body import Body
-from src.NumericalIntegrationMethods import RungeKutta4Strategy
-from src.SolarSystem import SolarSystem
+from matplotlib import pyplot as plt
+
+from src.strategies import RungeKutta4Strategy
+from src.solar_system import SolarSystem
+from src.visualization import plot_animation
 
 if __name__ == "__main__":
-    Body1 = Body(name="body1",
-                 mass=1e26,  # (kg)
-                 initial_position=np.array([2E4, 0, 0]),  # (km)
-                 initial_velocity=np.array([0, -10, 0])  # (km/s)
-                 )
 
-    Body2 = Body(name="body2",
-                 mass=1e26,  # (kg)
-                 initial_position=np.array([-2E4, 0, 0]),  # (km)
-                 initial_velocity=np.array([0, 10, 0])  # (km/s)
-                 )
+    n_steps = 10000
+    dt = 0.001
 
-    Body3 = Body(name="body3",
-                 mass=1e31,  # (kg)
-                 initial_position=np.array([0, 0, 0]),  # (km)
-                 initial_velocity=np.array([0, 0, 0])  # (km/s)
-                 )
+    solar_system = SolarSystem()
+    solar_system.load_data(Path("bodies_data.json"))
 
-    G = 6.67259e-20  # Gravitational constant (km**3/kg/s**2)
-    bodies = [Body1, Body2, Body3]
+    tn = 0
+    for n in range(n_steps):
+        tn += n * dt
+        y = solar_system.current_state
+        increment = RungeKutta4Strategy().compute_increment(y, tn, dt, solar_system.eqm_derivatives)
+        solar_system.update_state(y + increment * dt)
 
-    solar_system = SolarSystem(
-        planets=bodies,
-        num_integration_strategy=RungeKutta4Strategy()
-    )
-    solar_system.evolve(n_steps=100, dt=0.001)
+    anim = plot_animation(solar_system.planets)
+    anim.save('animation.gif', fps=10)
 
-    for p in solar_system.planets:
-        print(p.name, p.states)
+    plt.show()

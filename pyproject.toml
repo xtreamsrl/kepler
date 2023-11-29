@@ -6,7 +6,7 @@ authors = ["Gabriele Orlandi <gabriele.orlandi@xtreamers.io>", "Fabio Lipreri <f
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = ">=3.11,<3.13"
 matplotlib = "^3.8.0"
 jupyter = "^1.0.0"
 lab = "^7.4"

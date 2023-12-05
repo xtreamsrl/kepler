@@ -20,6 +20,7 @@ class SolarSystem:
                     Body(
                         name=body_name,
                         mass=body_data["mass"],
+                        radius=body_data["radius"],
                         initial_position=np.array(body_data["initial_position"]),
                         initial_velocity=np.array(body_data["initial_velocity"]),
                     )

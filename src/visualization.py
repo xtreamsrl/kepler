@@ -1,4 +1,4 @@
-import matplotlib
+import matplotlib as mpl
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d.art3d import Line3D, Path3DCollection
 from src.body import Body
 from src.utils import compute_relative_marker_size
 
-colors = matplotlib.colormaps["Set3"].colors
+colors = mpl.colormaps["Set3"].colors
 plt.style.use('dark_background')
 
 
@@ -35,7 +35,10 @@ def create_frame(
 
 
 def plot_animation(bodies: list[Body]):
-    trajectories = np.stack([b.states for b in bodies])
+    """
+    Add one to this variable if you struggled trying to edit this function -> STRUGGLES = 5
+    """
+    trajectories = np.stack([b.states for b in bodies]).swapaxes(1, 2) / 1e6
     masses = [b.mass for b in bodies]
     marker_sizes = [compute_relative_marker_size(m, max(masses)) for m in masses]
     n_frames = trajectories.shape[-1]
@@ -46,6 +49,7 @@ def plot_animation(bodies: list[Body]):
     zm = np.min(trajectories[:, 2, :])
     zM = np.max(trajectories[:, 2, :])
 
+    fig = plt.figure()
     ax = plt.axes(projection='3d')
     ax.set(xlim3d=(xm, xM), xlabel="X")
     ax.set(ylim3d=(ym, yM), xlabel="Y")
@@ -70,13 +74,35 @@ def plot_animation(bodies: list[Body]):
             marker='o',
             s=marker_sizes[i]
         ))
-    fig = plt.figure()
+
     anim = FuncAnimation(
         fig=fig,
         func=create_frame,
         fargs=(trajectories, trajectory_traces, position_traces),
         frames=n_frames,
-        interval=100,
+        interval=1,
         repeat=False
     )
-    return anim
+
+    plt.show()
+
+
+def orbit_plot(bodies):
+    trajectories = np.stack([b.states for b in bodies]).swapaxes(1, 2)
+    masses = [b.mass for b in bodies]
+    plt.style.use('dark_background')
+    colors = mpl.colormaps["Set3"].colors
+
+    fig = plt.figure()
+    ax = plt.axes(projection='3d')
+
+    for i in range(trajectories.shape[0]):
+        color = np.array(colors[i]).reshape(1, -1)
+        ax.plot3D(
+            trajectories[i, 0, :],
+            trajectories[i, 1, :],
+            trajectories[i, 2, :],
+            c=color,
+        )
+
+    plt.show()

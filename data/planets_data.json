@@ -1,0 +1,52 @@
+  {
+  "sun": {
+    "mass": 1.98e30,
+    "initial_position": [0, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  },
+  "mercury": {
+    "mass": 0.330e24,
+    "initial_position": [57.9e6, 0, 0],
+    "initial_velocity": [0, 40, 0]
+  },
+  "venus": {
+    "mass": 4.87e24,
+    "initial_position": [-108.2e6, 0, 0],
+    "initial_velocity": [0, 20, 0]
+  },
+  "earth": {
+    "mass": 5.97e24,
+    "initial_position": [149.6e6, 0, 0],
+    "initial_velocity": [0, 15, 0]
+  },
+  "mars": {
+    "mass": 0.642e24,
+    "initial_position": [-228e6, 0, 0],
+    "initial_velocity": [0, 20, 0]
+  },
+  "jupiter": {
+    "mass": 1898e24,
+    "initial_position": [778.5e6, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  },
+  "saturn": {
+    "mass": 568e24,
+    "initial_position": [-1432e6, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  },
+  "uranus": {
+    "mass": 86.8e24,
+    "initial_position": [2867e6, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  },
+  "neptune": {
+    "mass": 102e24,
+    "initial_position": [-4515e6, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  },
+  "pluto": {
+    "mass": 0.0130e24,
+    "initial_position": [5906.4e6, 0, 0],
+    "initial_velocity": [0, 0, 0]
+  }
+}

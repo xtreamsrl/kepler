@@ -4,7 +4,7 @@ import numpy as np
 import json
 from src.body import Body
 
-G = 6.67259e-20
+G = 6.67e-20  # Gravitational constant (km**3/kg/s**2)
 
 
 class SolarSystem:

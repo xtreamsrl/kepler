@@ -1,52 +1,52 @@
   {
   "sun": {
-    "mass": 1.98e30,
-    "initial_position": [0, 0, 0],
-    "initial_velocity": [0, 0, 0]
+    "mass": 1.98854e+30,
+    "initial_position": [1.81899e+08, 9.83830e+08, -1.58778e+07],
+    "initial_velocity": [-1.12474e+01, 7.54876e+00, 2.68723e-01]
   },
   "mercury": {
-    "mass": 0.330e24,
-    "initial_position": [57.9e6, 0, 0],
-    "initial_velocity": [0, 40, 0]
+    "mass": 3.30200e+23,
+    "initial_position": [-5.67576e+10, -2.73592e+10, 2.89173e+09],
+    "initial_velocity": [1.16497e+04, -4.14793e+04, -4.45952e+03]
   },
   "venus": {
-    "mass": 4.87e24,
-    "initial_position": [-108.2e6, 0, 0],
-    "initial_velocity": [0, 20, 0]
+    "mass": 4.86850e+24,
+    "initial_position": [4.28480e+10, 1.00073e+11, -1.11872e+09],
+    "initial_velocity": [-3.22930e+04, 1.36960e+04, 2.05091e+03]
   },
   "earth": {
-    "mass": 5.97e24,
-    "initial_position": [149.6e6, 0, 0],
-    "initial_velocity": [0, 15, 0]
+    "mass": 5.97219e+24,
+    "initial_position": [-1.43778e+11, -4.00067e+10, -1.38875e+07],
+    "initial_velocity": [7.65151e+03, -2.87514e+04, 2.08354e+00]
   },
   "mars": {
-    "mass": 0.642e24,
-    "initial_position": [-228e6, 0, 0],
-    "initial_velocity": [0, 20, 0]
+    "mass": 6.41850e+23,
+    "initial_position": [-1.14746e+11, -1.96294e+11, -1.32908e+09],
+    "initial_velocity": [2.18369e+04, -1.01132e+04, -7.47957e+02]
   },
   "jupiter": {
-    "mass": 1898e24,
-    "initial_position": [778.5e6, 0, 0],
-    "initial_velocity": [0, 0, 0]
+    "mass": 1.89813e+27,
+    "initial_position": [-5.66899e+11, -5.77495e+11, 1.50755e+10],
+    "initial_velocity": [9.16793e+03, -8.53244e+03, -1.69767e+02]
   },
   "saturn": {
-    "mass": 568e24,
-    "initial_position": [-1432e6, 0, 0],
-    "initial_velocity": [0, 0, 0]
+    "mass": 5.68319e+26,
+    "initial_position": [8.20513e+10, -1.50241e+12, 2.28565e+10],
+    "initial_velocity": [9.11312e+03, 4.96372e+02, -3.71643e+02]
   },
   "uranus": {
-    "mass": 86.8e24,
-    "initial_position": [2867e6, 0, 0],
-    "initial_velocity": [0, 0, 0]
+    "mass": 8.68103e+25,
+    "initial_position": [2.62506e+12, 1.40273e+12, -2.87982e+10],
+    "initial_velocity": [-3.25937e+03, 5.68878e+03, 6.32569e+01]
   },
   "neptune": {
-    "mass": 102e24,
-    "initial_position": [-4515e6, 0, 0],
-    "initial_velocity": [0, 0, 0]
+    "mass": 1.02410e+26,
+    "initial_position": [4.30300e+12, -1.24223e+12, -7.35857e+10],
+    "initial_velocity": [1.47132e+03, 5.25363e+03, -1.42701e+02]
   },
   "pluto": {
-    "mass": 0.0130e24,
-    "initial_position": [5906.4e6, 0, 0],
-    "initial_velocity": [0, 0, 0]
+    "mass": 1.30700e+22,
+    "initial_position": [1.65554e+12, -4.73503e+12, 2.77962e+10],
+    "initial_velocity": [5.24541e+03, 6.38510e+02, -1.60709e+03]
   }
 }

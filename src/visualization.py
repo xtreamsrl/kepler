@@ -87,9 +87,8 @@ def plot_animation(bodies: list[Body]):
     plt.show()
 
 
-def orbit_plot(bodies):
+def plot_orbits(bodies):
     trajectories = np.stack([b.states for b in bodies]).swapaxes(1, 2)
-    masses = [b.mass for b in bodies]
     plt.style.use('dark_background')
     colors = mpl.colormaps["Set3"].colors
 

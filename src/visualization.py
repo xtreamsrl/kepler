@@ -83,7 +83,7 @@ def plot_animation(bodies: list[Body]):
         interval=1,
         repeat=False
     )
-
+    anim.save("animation.gif")
     plt.show()
 
 

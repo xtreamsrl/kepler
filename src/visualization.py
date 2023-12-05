@@ -21,15 +21,15 @@ def create_frame(
 
     for i in range(trajectories.shape[0]):
         trajectory_traces[i].set_data(
-            trajectories[i, 0, :frame_num],
-            trajectories[i, 1, :frame_num],
+            trajectories[i, :frame_num, 0],
+            trajectories[i, :frame_num, 1],
         )
-        trajectory_traces[i].set_3d_properties(trajectories[i, 2, :frame_num])
+        trajectory_traces[i].set_3d_properties(trajectories[i, :frame_num, 2])
 
         position_traces[i].set_offsets(
-            trajectories[i, 0:2, frame_num],
+            trajectories[i, frame_num, 0:2],
         )
-        position_traces[i].set_3d_properties(trajectories[i, 2, frame_num], zdir="z")
+        position_traces[i].set_3d_properties(trajectories[i, frame_num, 2], zdir="z")
 
     return trajectory_traces + position_traces
 
@@ -38,16 +38,16 @@ def plot_animation(bodies: list[Body]):
     """
     Add one to this variable if you struggled trying to edit this function -> STRUGGLES = 5
     """
-    trajectories = np.stack([b.states for b in bodies]).swapaxes(1, 2) / 1e6
+    trajectories = np.stack([b.states for b in bodies])
     masses = [b.mass for b in bodies]
     marker_sizes = [compute_relative_marker_size(m, max(masses)) for m in masses]
-    n_frames = trajectories.shape[-1]
-    xm = np.min(trajectories[:, 0, :])
-    xM = np.max(trajectories[:, 0, :])
-    ym = np.min(trajectories[:, 1, :])
-    yM = np.max(trajectories[:, 1, :])
-    zm = np.min(trajectories[:, 2, :])
-    zM = np.max(trajectories[:, 2, :])
+    n_frames = trajectories.shape[1]
+    xm = np.min(trajectories[:, :, 0])
+    xM = np.max(trajectories[:, :, 0])
+    ym = np.min(trajectories[:, :, 1])
+    yM = np.max(trajectories[:, :, 1])
+    zm = np.min(trajectories[:, :, 2])
+    zM = np.max(trajectories[:, :, 2])
 
     fig = plt.figure()
     ax = plt.axes(projection='3d')
@@ -62,14 +62,14 @@ def plot_animation(bodies: list[Body]):
         color = np.array(colors[i]).reshape(1, -1)
         trajectory_traces += ax.plot3D(
             trajectories[i, 0, 0],
-            trajectories[i, 1, 0],
-            trajectories[i, 2, 0],
+            trajectories[i, 0, 1],
+            trajectories[i, 0, 2],
             c=color,
         )
         position_traces.append(ax.scatter(
             trajectories[i, 0, 0],
-            trajectories[i, 1, 0],
-            trajectories[i, 2, 0],
+            trajectories[i, 0, 1],
+            trajectories[i, 0, 2],
             c=color,
             marker='o',
             s=marker_sizes[i]
@@ -83,13 +83,12 @@ def plot_animation(bodies: list[Body]):
         interval=1,
         repeat=False
     )
-
+    # anim.save("animation.gif", fps=10)
     plt.show()
 
 
-def orbit_plot(bodies):
-    trajectories = np.stack([b.states for b in bodies]).swapaxes(1, 2)
-    masses = [b.mass for b in bodies]
+def plot_orbits(bodies):
+    trajectories = np.stack([b.states for b in bodies])
     plt.style.use('dark_background')
     colors = mpl.colormaps["Set3"].colors
 
@@ -99,9 +98,9 @@ def orbit_plot(bodies):
     for i in range(trajectories.shape[0]):
         color = np.array(colors[i]).reshape(1, -1)
         ax.plot3D(
-            trajectories[i, 0, :],
-            trajectories[i, 1, :],
-            trajectories[i, 2, :],
+            trajectories[i, :, 0],
+            trajectories[i, :, 1],
+            trajectories[i, :, 2],
             c=color,
         )
 

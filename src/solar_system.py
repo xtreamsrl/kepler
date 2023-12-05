@@ -4,7 +4,7 @@ import numpy as np
 import json
 from src.body import Body
 
-G = 6.67e-20  # Gravitational constant (km**3/kg/s**2)
+G = 6.67e-11  # Gravitational constant (m**3/kg/s**2)
 
 
 class SolarSystem:
@@ -20,6 +20,7 @@ class SolarSystem:
                     Body(
                         name=body_name,
                         mass=body_data["mass"],
+                        radius=body_data["radius"],
                         initial_position=np.array(body_data["initial_position"]),
                         initial_velocity=np.array(body_data["initial_velocity"]),
                     )
@@ -39,15 +40,14 @@ class SolarSystem:
         derivatives of the equations of motion describing the n-body system
         t is unused
         """
+        masses = [planet.mass for planet in self.planets]
         derivatives = []
         for i in range(_y.shape[0]):
             ri = _y[i, 0:3]
-            mi = self.planets[i].mass
             vi = _y[i, 3:6]
-
             # acceleration
-            ai = G * mi * sum([
-                (_y[j, 0:3] - ri) / np.linalg.norm(_y[j, 0:3] - ri) ** 3
+            ai = G * sum([
+                masses[j] * (_y[j, 0:3] - ri) / np.linalg.norm(_y[j, 0:3] - ri) ** 3
                 for j in set(range(_y.shape[0])) - {i}
             ])
             derivatives.append(np.concatenate([vi, ai]))

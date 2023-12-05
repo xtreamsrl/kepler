@@ -2,11 +2,11 @@ from pathlib import Path
 
 from src.strategies import RungeKutta4Strategy
 from src.solar_system import SolarSystem
-from src.visualization import plot_animation, orbit_plot
+from src.visualization import plot_animation, plot_orbits
 
 if __name__ == "__main__":
-    n_steps = 100
-    dt = 0.1
+    n_steps = 10000
+    dt = 60*60*24  # s
 
     solar_system = SolarSystem()
     solar_system.load_data(Path("data/planets_data.json"))

@@ -2,9 +2,10 @@ import numpy as np
 
 
 class Body:
-    def __init__(self, name: str, mass: float, initial_position: np.array, initial_velocity: np.array):
+    def __init__(self, name: str, mass: float, radius: float, initial_position: np.array, initial_velocity: np.array):
         self.name = name
         self.mass = mass
+        self.radius = radius
         self.states = [np.concatenate([initial_position, initial_velocity])]
 
     @property

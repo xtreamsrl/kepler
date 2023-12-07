@@ -3,6 +3,7 @@ from pathlib import Path
 from src.strategies import RungeKutta4Strategy, NumericalIntegrationStrategy
 from src.solar_system import SolarSystem
 from src.system_interface import SystemInterface
+from src.utils import load_planets_from_json
 from src.visualization import plot_animation, plot_orbits
 
 
@@ -21,9 +22,10 @@ if __name__ == "__main__":
     n_steps = 10000
     dt = 60*60*24  # s
 
-    solar_system = SolarSystem()
-    solar_system.load_data(Path("data/planets_data.json"))
+    data_path = Path("data/planets_data.json")
+    planets = load_planets_from_json(data_path)
 
+    solar_system = SolarSystem(planets)
     evolving_strategy = RungeKutta4Strategy()
 
     evolve(solar_system, evolving_strategy)

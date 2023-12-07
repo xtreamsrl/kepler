@@ -12,22 +12,6 @@ class SolarSystem(SystemInterface):
     def __init__(self, planets: list[Body] = None):
         self.planets = planets
 
-    def load_data(self, data_path: Path):
-        with open(data_path, "r") as f:
-            data_dict = json.load(f)
-            planets = []
-            for body_name, body_data in data_dict.items():
-                planets.append(
-                    Body(
-                        name=body_name,
-                        mass=body_data["mass"],
-                        radius=body_data["radius"],
-                        initial_position=np.array(body_data["initial_position"]),
-                        initial_velocity=np.array(body_data["initial_velocity"]),
-                    )
-                )
-            self.planets = planets
-
     @property
     def current_state(self) -> np.array:
         return np.stack([p.current_state for p in self.planets])

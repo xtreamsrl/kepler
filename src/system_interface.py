@@ -5,11 +5,6 @@ import numpy as np
 
 
 class SystemInterface:
-
-    @abstractmethod
-    def load_data(self, data_path: Path) -> None:
-        """Method that loads data of the system"""
-
     @property
     @abstractmethod
     def current_state(self) -> np.array:

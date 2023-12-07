@@ -3,11 +3,12 @@ from pathlib import Path
 import numpy as np
 import json
 from src.body import Body
+from src.system_interface import SystemInterface
 
 G = 6.67e-11  # Gravitational constant (m**3/kg/s**2)
 
 
-class SolarSystem:
+class SolarSystem(SystemInterface):
     def __init__(self, planets: list[Body] = None):
         self.planets = planets
 
@@ -35,20 +36,20 @@ class SolarSystem:
         for body_idx, body_state in enumerate(state):
             self.planets[body_idx].update_state(body_state)
 
-    def eqm_derivatives(self, _y: np.array, t: float) -> np.array:
+    def state_derivatives(self, state: np.array, t: float) -> np.array:
         """
         derivatives of the equations of motion describing the n-body system
         t is unused
         """
         masses = [planet.mass for planet in self.planets]
         derivatives = []
-        for i in range(_y.shape[0]):
-            ri = _y[i, 0:3]
-            vi = _y[i, 3:6]
+        for i in range(state.shape[0]):
+            ri = state[i, 0:3]
+            vi = state[i, 3:6]
             # acceleration
             ai = G * sum([
-                masses[j] * (_y[j, 0:3] - ri) / np.linalg.norm(_y[j, 0:3] - ri) ** 3
-                for j in set(range(_y.shape[0])) - {i}
+                masses[j] * (state[j, 0:3] - ri) / np.linalg.norm(state[j, 0:3] - ri) ** 3
+                for j in set(range(state.shape[0])) - {i}
             ])
             derivatives.append(np.concatenate([vi, ai]))
 

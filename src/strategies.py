@@ -10,7 +10,7 @@ class NumericalIntegrationStrategy(ABC):
     def compute_increment(
             self,  y: np.array, t: float, dt: float, derivatives: Callable[[np.array, float], np.array]
     ) -> np.array:
-        pass
+        """A method that compute increments of the numerical strategy"""
 
 
 class EulerStrategy(NumericalIntegrationStrategy):

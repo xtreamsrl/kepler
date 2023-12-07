@@ -1,8 +1,21 @@
 from pathlib import Path
 
-from src.strategies import RungeKutta4Strategy
+from src.strategies import RungeKutta4Strategy, NumericalIntegrationStrategy
 from src.solar_system import SolarSystem
+from src.system_interface import SystemInterface
 from src.visualization import plot_animation, plot_orbits
+
+
+def evolve(system: SystemInterface, evolving_strategy: NumericalIntegrationStrategy):
+    tn = 0
+    for n in range(n_steps):
+        if n % 500 == 0:
+            print(f"{n}/{n_steps} steps calculated")
+        tn += n * dt
+        y = system.current_state
+        increment = evolving_strategy.compute_increment(y, tn, dt, system.state_derivatives)
+        system.update_state(y + increment * dt)
+
 
 if __name__ == "__main__":
     n_steps = 10000
@@ -11,13 +24,8 @@ if __name__ == "__main__":
     solar_system = SolarSystem()
     solar_system.load_data(Path("data/planets_data.json"))
 
-    tn = 0
-    for n in range(n_steps):
-        if n % 500 == 0:
-            print(f"{n}/{n_steps} steps calculated")
-        tn += n * dt
-        y = solar_system.current_state
-        increment = RungeKutta4Strategy().compute_increment(y, tn, dt, solar_system.eqm_derivatives)
-        solar_system.update_state(y + increment * dt)
+    evolving_strategy = RungeKutta4Strategy()
+
+    evolve(solar_system, evolving_strategy)
 
     plot_animation(solar_system.planets)
